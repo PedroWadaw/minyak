@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk List</title>
+    <link rel="website icon" type="png" href="asset/img/logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <style>
+        #orderPopup {
+            display: none;
+            /* Sembunyikan popup secara default */
+        }
+
+        #orderPopup.active {
+            display: flex;
+            /* Tampilkan popup saat aktif */
+        }
+
+        #orderPopup img {
+            max-width: 100%;
+            height: 54vh;
+        }
+    </style>
+</head>
+
+<body style="font-family: Montserrat;" class="bg-green-900">
+    <div id="orderPopup" class="hidden pt-13 fixed w-full inset-0 bg-white z-1000">
+        <div class="bg-white border-gray-300 p-5 h-full shadow-lg w-full">
+            <div class="pb-2" aria-label="Breadcrumb">
+                <ol class="flex items-center gap-1 text-sm">
+                    <li>
+                        <a href="produk-page.html" class="block transition-colors hover:font-medium"> Produk Page </a>
+                    </li>
+
+                    <li class="rtl:rotate-180">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </li>
+
+                    <li>
+                        <a href="#" id="nameProduct" class="block font-medium"></a>
+                    </li>
+                </ol>
+            </div>
+            <div class="flex w-full">
+                <img id="popupProductImage" src="" alt="Product Image" class="w-4/10 h-full object-cover mr-4">
+                <div class="flex flex-col w-[30%] justify-between">
+                    <div>
+                        <p><span class="text-3xl italic font-semibold pt-2" id="popupProductName"></span></p>
+                        <p><span class="text-xl font-semibold pt-2" id="popupProductCat"></span></p>
+                        <span class="text-2xl text-green-500 font-semibold" id="popupProductPrice"></span>
+                        <p><span class="text-xl font-semibold pt-2">Deskripsi produk : </span></p>
+                        <div class="font-medium">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, cumque
+                            magni! At cumque maiores corporis quis, facilis laborum eligendi sint autem eaque
+                            accusantium laboriosam ducimus? Fugit perferendis quia iste iusto.</div>
+                    </div>
+                    <div class="">
+                        <button id="closePopup" class="bg-gray-300 px-4 py-2 font-semibold rounded">Cancel</button>
+                    </div>
+                </div>
+                <div class="w-[27%] ml-6">
+                    <div class="border mt-5 rounded-xl border-gray-300 p-5 h-auto">
+                        <div class="font-semibold text-lg pb-1">Jumlah : </div>
+                        <div class="flex">
+                            <button class="p-0.5 text-3xl w-10 bg-gray-300" id="minus">-</button>
+                            <input type="number" id="productQuantity" value="1" min="1"
+                                class="border py-0.5 pl-11 w-24 text-xl font-semibold">
+                            <button class="p-0.5 text-3xl w-10 bg-gray-300" id="plus">+</button>
+                        </div>
+                        <p class="text-xl pt-1 font-semibold">Harga Total: <span class="text-xl font-semibold"
+                                id="popupTotalPrice"></span></p>
+                        <button id="buyNowButton"
+                            class="bg-green-500 text-white px-4 mt-1 w-full py-2 font-semibold rounded">Beli
+                            Sekarang</button>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 h-full w-full">
+                <div class=" text-xl font-semibold ">Kenapa beli di toko kami?</div>
+                <div class="text-lg font-medium">Dengan membeli di toko kami tanpa sadar kamu berperan dalam :</div>
+                <div class="text-lg font-medium">- Menggerakan ekonomi bangsa lewat umkm,</div>
+                <div class="text-lg font-medium">- Menjaga budaya kita tetap hidup,</div>
+                <div class="text-lg font-medium">- Satu pembelianmu, jadi harapan besar bagi kami untuk terus berkembang
+                    kedepannya.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute hidden top-0 flex">
+        <div id="food"></div>
+        <div id="beauty"></div>
+        <div id="cake"></div>
+        <div id="drink"></div>
+        <div id="tshirt"></div>
+    </div>
+    <div class="box bg-gray-100 pb-10 rounded-b-4xl">
+        <nav class="h-[9vh] fixed w-full z-1000 border-b border-gray-300 shadow-md flex justify-between bg-white pl-6 pr-5">
+            <div class="flex gap-x-2 pt-4.5">
+                <img src="asset/img/logo.png" alt="" class="pb-2.5">
+                <div class="text-[20px] font-semibold pt-0.5">Oleh-Oleh Nusantara</div>
+                <a href="produk-page.html" class="text-[18.5px] pt-1 font-medium cursor-pointer text-gray-500">Shop</a>
+                <!-- <div class="text-[18.5px] pt-1 font-medium cursor-pointer pr-3">Gallery</div> -->
+                <a href="about.html" class="text-[18.5px] pt-1 font-medium cursor-pointer">About</a>
+                <div class="text-[18.5px] pt-1 font-medium cursor-pointer">Product</div>
+            </div>
+            <div class="flex pt-4 pb-2.5">
+                <div class="items-center flex font-medium text-[19px]" id="acc"></div>
+                <!-- <img src="https://icon-library.com/images/member-icon-png/member-icon-png-4.jpg" alt=""
+                        class="pt-0.5 w-8 h-8 mx-3"> -->
+                <a href="login.html" class="text-[18px] pt-1 font-medium cursor-pointer">
+                    Sign in</a>
+                <!-- <div class=" text-[18px] pt-1 font-medium cursor-pointer">
+                        Logout</div> -->
+            </div>
+        </nav>
+
+        <nav class="pt-19 pl-9 pb-1" aria-label="Breadcrumb">
+            <ol class="flex items-center gap-1 text-sm">
+                <li>
+                    <a href="index.html" class="block transition-colors hover:font-medium"> Home </a>
+                </li>
+
+                <li class="rtl:rotate-180">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </li>
+
+                <li>
+                    <a href="produk-page.html" class="block font-medium"> Product List </a>
+                </li>
+            </ol>
+        </nav>
+
+        <div class="pl-9 text-2xl font-semibold">List Produk</div>
+        <div class="pl-9 pt-2 flex gap-x-5">
+            <div class="font-medium text-[17px] cursor-pointer underline" id="all-side">All</div>
+            <div class="font-medium text-[17px] cursor-pointer" id="beauty-side">Beauty & healthy</div>
+            <div class="font-medium text-[17px] cursor-pointer" id="food-side">Healthy food</div>
+            <div class="font-medium text-[17px] cursor-pointer" id="cake-side">Cake</div>
+            <div class="font-medium text-[17px] cursor-pointer" id="drink-side">Drink</div>
+            <div class="font-medium text-[17px] cursor-pointer" id="tshirt-side">T-shirt</div>
+        </div>
+
+        <div id="productPage">
+            <div id="allProduct" class="">
+                <div class="grid grid-cols-6 gap-x-5 gap-y-6 px-9 pt-7">
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="beautyProduct" class="hidden">
+                <div class="grid grid-cols-6 gap-x-5 gap-y-6 px-9 pt-7">
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="foodProduct" class="hidden">
+                <div class="grid grid-cols-6 gap-x-5 gap-y-6 px-9 pt-7">
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="cakeProduct" class="hidden">
+                <div class="grid grid-cols-6 gap-x-5 gap-y-6 px-9 pt-7">
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="drinkProduct" class="hidden">
+                <div class="grid grid-cols-6 gap-x-5 gap-y-6 px-9 pt-7">
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tshirtProduct" class="hidden">
+                <div class="grid grid-cols-6 gap-x-5 gap-y-6 px-9 pt-7">
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                    <div
+                        class="card cursor-pointer border border-gray-300 bg-white rounded-md hover:shadow-lg h-65 overflow-hidden">
+                        <div
+                            class="inner-card transition-transform duration-300 ease-in-out hover:scale-105 h-[65%] overflow-hidden">
+                            <div class="h-full">
+                                <img src="asset/img/samurai-anime-girl-katana-kimono-sci-fi-4k-wallpaper-uhdpaper.com-311@5@d.jpg"
+                                    alt="" class="product-img min-w-full min-h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="px-3 pt-2 font-medium h-13.5 text-[16px]">Minyak Nusantara Cap Datuk 150ml</div>
+                        <div class="px-3 font-semibold text-lg">Rp 75.000</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="text-white" id="footer">
+        <div class="flex justify-between py-4 px-8">
+            <div class="flex gap-x-2.5">
+                <img src="asset/img/logo-white.png" alt="" class="w-10 h-11">
+                <div class="pt-2 text-xl font-semibold">Oleh-oleh Nusantara</div>
+            </div>
+
+            <div class="flex gap-x-13 pt-1.5">
+                <div class="">
+                    <div class="text-center text-[17px] font-medium">Follow us</div>
+                    <div class="flex gap-x-3">
+                        <img src="asset/img/footer1.png" alt="" class="w-7 cursor-pointer">
+                        <img src="asset/img/footer2.png" alt="" class="w-7 cursor-pointer">
+                        <img src="asset/img/footer3.png" alt="" class="w-7 cursor-pointer">
+                        <img src="asset/img/footer4.png" alt="" class="w-7 cursor-pointer">
+                        <img src="asset/img/footer5.png" alt="" class="w-7 cursor-pointer">
+                    </div>
+                </div>
+                <div class="">
+                    <div class="font-medium cursor-pointer text-center text-[17px]">Home</div>
+                    <div class="font-medium cursor-pointer text-[17px]">About Us</div>
+                </div>
+                <div class="text-center pr-3">
+                    <div class="font-medium cursor-pointer text-[17px]">Blog</div>
+                    <div class="font-medium cursor-pointer text-[17px]">Contact Us</div>
+                    <div class="font-medium cursor-pointer text-[17px]">Feedback</div>
+                    <div class="font-medium cursor-pointer text-[17px]">Bug Report</div>
+                </div>
+            </div>
+        </div>
+        <div class="pb-5 text-center font-medium text-[16px]">© 2025 Oleh-oleh Nusantara. All right reserved.</div>
+    </div>
+
+    <script src="js/tes.js"></script>
+
+</body>
+
+</html>

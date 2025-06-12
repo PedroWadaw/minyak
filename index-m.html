@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="website icon" type="png" href="asset/img/logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .swiper {
+            width: 100%;
+            padding: 12px 0;
+        }
+
+        .swiper-slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card {
+            width: 90%;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .card .text-content {
+            padding: 10px;
+            font-weight: 600;
+        }
+
+        .card .text-content h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .shop-now {
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            background: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .slides-wrapper {
+            transition: transform 0.7s ease-in-out;
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            object-position: center;
+            user-select: none;
+            object-fit: cover;
+        }
+
+        .slideshow-track {
+            width: calc(150px * 25);
+            animation: slide-left 60s linear infinite;
+        }
+
+        .slideshow-track img {
+            user-select: none;
+            width: 150px;
+            height: auto;
+            margin-right: 1.5rem;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            padding: 0.75rem;
+        }
+
+        @keyframes slide-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+
+<body style="font-family: Montserrat;" class="bg-green-900">
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <div class="box w-full bg-white rounded-b-[25px]">
+        <div class="h-[7dvh] border-b border-gray-400 shadow-md w-full flex justify-between px-2 ">
+            <div class="flex items-center gap-x-1.5">
+                <img src="logo.png" alt="" class="py-2.5 w-10 h-14.5">
+                <div class="font-semibold text-lg">Oleh-Oleh Nusantara</div>
+            </div>
+            <div class="flex items-center gap-x-1.5 pr-1">
+                <div class="text-lg font-semibold">Sign in </div>
+                <div class="text-lg font-medium hidden">Sign out </div>
+            </div>
+
+        </div>
+
+        <div class="flex pt-58 justify-center text-2xl font-semibold">
+            Produk Baru Kami
+        </div>
+        <div class="grid grid-cols-2 pt-3 px-6 gap-x-6  w-full">
+            <div data-aos="fade-right" data-aos-duration="1000" class="cardd h-63 border-x border-gray-300">
+                <img src="asset/img/img1.jpg" alt="" class="h-[60%] w-full object-cover">
+                <div class=" h-[25%] font-medium text-[15.5px] px-2 pt-2">Minyak Nusantara Cap Datuk 150ml
+                </div>
+                <div class=" h-[15%] font-semibold text-[17px] text-center px-2 py-1 bg-green-300">Buy now
+                </div>
+            </div>
+            <div data-aos="fade-left" data-aos-duration="1000" class="cardd h-63 border-x border-gray-300">
+                <img src="asset/img/img1.jpg" alt="" class="h-[60%] w-full object-cover">
+                <div class=" h-[25%] font-medium text-[15.5px] px-2 pt-2">Minyak Nusantara Cap Datuk 150ml
+                </div>
+                <div class=" h-[15%] font-semibold text-[17px] text-center px-2 py-1 bg-green-300">Buy now
+                </div>
+            </div>
+        </div>
+
+        <center><button data-aos="fade-up" data-aos-duration="1000"
+                class="mt-3 py-1.5 px-3 text-[17px] font-semibold bg-white border shadow-md rounded-2xl">Lihat
+                Semua</button></center>
+
+        <div data-aos="fade-up" data-aos-duration="1000">
+            <div class="text-2xl text-red-800 font-semibold text-center pt-4">Oleh-Oleh Nusantara </div>
+            <div class="text-center px-3 pt-2 font-medium">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Ratione
+                error, quaerat magnam adipisci porro maiores magni minima natus fugit qui.</div>
+        </div>
+        <div class="text-xl font-semibold text-center pt-2">Member of</div>
+        <center>
+            <img src="solo.jpg" alt="" class="w-1/2">
+        </center>
+
+        <div class="flex pt-3 pb-3 h-[40vh] gap-x-2 w-full overflow-hidden">
+            <img src="gallery.png" alt="" class="w-full h-full">
+        </div>
+
+        <div class="w-full overflow-hidden">
+            <div class="flex justify-center text-2xl font-semibold">
+                Kategori Produk
+            </div>
+
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="asset/img/img1.jpg" alt="Toothpaste Bits">
+                            <div class="text-content">
+                                <h3>Beauty & Healthy</h3>
+                                <a href="#" class="shop-now">SHOP NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Repeat up to 5 slides -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="asset/img/img1.jpg" alt="Toothpaste Bits">
+                            <div class="text-content">
+                                <h3>Healthy Food</h3>
+                                <a href="#" class="shop-now">SHOP NOW</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="asset/img/img1.jpg" alt="Toothpaste Bits">
+                            <div class="text-content">
+                                <h3>Cake</h3>
+                                <a href="#" class="shop-now">SHOP NOW</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="asset/img/img1.jpg" alt="Toothpaste Bits">
+                            <div class="text-content">
+                                <h3>Drink</h3>
+                                <a href="#" class="shop-now">SHOP NOW</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="asset/img/img1.jpg" alt="Toothpaste Bits">
+                            <div class="text-content">
+                                <h3>T-Shirt</h3>
+                                <a href="#" class="shop-now">SHOP NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slideshow-container pb-3 w-full rounded-b-[40px] overflow-hidden relative" id="slideLogo">
+                <div class="slideshow-track flex" aria-label="Logo slideshow">
+                    <img src="asset/img/logo1.png" alt="Logo 1" />
+                    <img src="asset/img/logo2.png" alt="Logo 2" />
+                    <img src="asset/img/logo3.png" alt="Logo 3" />
+                    <img src="asset/img/logo4.png" alt="Logo 4" />
+                    <img src="asset/img/logo5.png" alt="Logo 5" />
+
+                    <img src="asset/img/logo1.png" alt="Logo 1" />
+                    <img src="asset/img/logo2.png" alt="Logo 2" />
+                    <img src="asset/img/logo3.png" alt="Logo 3" />
+                    <img src="asset/img/logo4.png" alt="Logo 4" />
+                    <img src="asset/img/logo5.png" alt="Logo 5" />
+
+                    <img src="asset/img/logo1.png" alt="Logo 1" />
+                    <img src="asset/img/logo2.png" alt="Logo 2" />
+                    <img src="asset/img/logo3.png" alt="Logo 3" />
+                    <img src="asset/img/logo4.png" alt="Logo 4" />
+                    <img src="asset/img/logo5.png" alt="Logo 5" />
+
+                    <img src="asset/img/logo1.png" alt="Logo 1" />
+                    <img src="asset/img/logo2.png" alt="Logo 2" />
+                    <img src="asset/img/logo3.png" alt="Logo 3" />
+                    <img src="asset/img/logo4.png" alt="Logo 4" />
+                    <img src="asset/img/logo5.png" alt="Logo 5" />
+
+                    <img src="asset/img/logo1.png" alt="Logo 1" />
+                    <img src="asset/img/logo2.png" alt="Logo 2" />
+                    <img src="asset/img/logo3.png" alt="Logo 3" />
+                    <img src="asset/img/logo4.png" alt="Logo 4" />
+                    <img src="asset/img/logo5.png" alt="Logo 5" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-white" id="footer">
+        <div class="flex justify-between pt-5 pb-3 px-4 overflow-x-hidden">
+            <div class="flex relative flex-col">
+                <div class="flex gap-x-2.5 absolute w-full overflow-hidden">
+                    <div class="w-16">
+                        <img src="asset/img/logo-white.png" alt="" class="w-10 h-11">
+                    </div>
+                </div>
+                <div class="w-100 absolute pl-13 pt-2.5">
+                    <div class="text-xl w-full font-semibold">Oleh-oleh Nusantara</div>
+                </div>
+                <div class="pt-12 pl-2">
+                    <div class="text-center text-[17px] font-medium">Follow us</div>
+                    <div class="flex gap-x-1.5">
+                        <img src="asset/img/footer1.png" alt="" class="w-7 cursor-pointer">
+                        <img src="asset/img/footer2.png" alt="" class="w-7 cursor-pointer">
+                        <img src="asset/img/footer3.png" alt="" class="w-7 cursor-pointer">
+                        <img src="asset/img/footer4.png" alt="" class="w-7 cursor-pointer">
+                        <img src="asset/img/footer5.png" alt="" class="w-7 cursor-pointer">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex pt-12">
+                <div class="text-center pr-3">
+                    <div class="font-medium cursor-pointer text-[17px]">Blog</div>
+                    <div class="font-medium cursor-pointer text-[17px]">Contact Us</div>
+                    <div class="font-medium cursor-pointer text-[17px]">Feedback</div>
+                    <div class="font-medium cursor-pointer text-[17px]">Bug Report</div>
+                </div>
+            </div>
+        </div>
+        <div class="pb-5 text-center font-medium text-[15px]">© 2025 Oleh-oleh Nusantara. All right reserved.
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="w-full top-[7%] flex justify-center p-4 overflow-hidden absolute">
+        <div class="w-[98%] overflow-hidden rounded-lg shadow-md"">
+                        <div class=" slides-wrapper flex max-w-full">
+            <img src="asset/img/img1.jpg" alt="Beautiful Landscape 2" class="slide cursor-pointer"
+                onclick="window.location.href = 'produk-page.php#beauty'" />
+            <img src="asset/img/img2.jpg" class="slide cursor-pointer"
+                onclick="window.location.href = 'produk-page.php#food'" />
+            <img src="asset/img/img3.jpg" alt="Beautiful Landscape 4" class="slide cursor-pointer"
+                onclick="window.location.href = 'produk-page.php#cake'" />
+        </div>
+        <button class="prev hidden" aria-label="Previous Slide flex justify-content items-center"></button>
+        <button class="next hidden" aria-label="Next Slide flex justify-content items-center"></button>
+    </div>
+
+
+
+
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init();
+        });
+    </script>
+    <script>
+        window.addEventListener("pageshow", function (event) {
+            console.log("pageshow event fired", event.persisted);
+            if (event.persisted || (window.performance && window.performance.getEntriesByType("navigation")[0].type === "back_forward")) {
+                AOS.init();
+                AOS.refresh();
+            }
+        });
+    </script>
+    <script>
+        window.addEventListener("pageshow", function (event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        });
+
+        (function () {
+            const slidesWrapper = document.querySelector('.slides-wrapper');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+            let currentIndex = 0;
+            let slideInterval = null;
+            const intervalTime = 2500;
+
+            function showSlide(index) {
+                if (index < 0) index = slides.length - 1; if (index >= slides.length) index = 0;
+                const offset = -index * 100;
+                slidesWrapper.style.transform = `translateX(${offset}%)`;
+                dots.forEach((dot, i) => {
+                    const isActive = i === index;
+                    dot.classList.toggle('active', isActive);
+                    dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                    dot.tabIndex = isActive ? 0 : -1;
+                });
+                currentIndex = index;
+            }
+
+            function nextSlide() {
+                showSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentIndex - 1);
+            }
+
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetInterval();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetInterval();
+            });
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                    resetInterval();
+                });
+                dot.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        showSlide(index);
+                        resetInterval();
+                    }
+                });
+            });
+
+            function resetInterval() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, intervalTime);
+            }
+
+            showSlide(currentIndex);
+            slideInterval = setInterval(nextSlide, intervalTime);
+
+        })();
+    </script>
+</body>
+
+</html>
